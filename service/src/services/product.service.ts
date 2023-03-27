@@ -12,13 +12,11 @@ export function makeProductService (productRepository: ProductRepository) {
     },
 
     createProduct: async (data: Product) => {
-      const newProduct = await productRepository.create(data)
-      return newProduct
+      return await productRepository.create(data)
     },
 
     updateProduct: async (id: number, data: Product) => {
-      const product = await productRepository.update(id, data)
-      return product
+      return await productRepository.update(id, data)
     },
 
     deleteProduct: async (id: number) => {

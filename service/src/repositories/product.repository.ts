@@ -7,11 +7,11 @@ const _products: Array<Product> = [
   {
     id: 1,
     name: "Product 1",
-    scrumMaster: "Scrum Master 1",
     owner: "Owner 1",
+    scrumMaster: "Scrum Master 1",
     developerNames: ["Developer 1", "Developer 2"],
-    startDate: new Date(),
-    methodology: Methodology.Agile
+    methodology: Methodology.Agile,
+    startDate: new Date()
   }
 ]
 
@@ -30,11 +30,11 @@ export default class ProductRepository implements ProductRepositoryInterface {
 
     newProduct.id = Date.now()
     newProduct.name = data.name
-    newProduct.scrumMaster = data.scrumMaster
     newProduct.owner = data.owner
+    newProduct.scrumMaster = data.scrumMaster
     newProduct.developerNames = data.developerNames
-    newProduct.startDate = data.startDate
     newProduct.methodology = data.methodology
+    newProduct.startDate = data.startDate
     
     _products.push(newProduct)
     return newProduct
@@ -45,13 +45,14 @@ export default class ProductRepository implements ProductRepositoryInterface {
     
     if (product) {
       product.name = data.name
-      product.scrumMaster = data.scrumMaster
       product.owner = data.owner
+      product.scrumMaster = data.scrumMaster
       product.developerNames = data.developerNames
-      product.startDate = data.startDate
 
       let methodology: string = Methodology[data.methodology]
       product.methodology = methodology
+
+      product.startDate = data.startDate
     }
 
     return product

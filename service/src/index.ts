@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import express from "express";
 import { loadControllers, scopePerRequest } from "awilix-express";
 import { configureContainer } from "./container";
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./utils/swagger"
 
 dotenv.config();
 
@@ -22,6 +24,9 @@ app.use(loadControllers(
   'controllers/*.ts',
   { cwd: __dirname }
 ));
+
+// api docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
