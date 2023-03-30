@@ -2,8 +2,8 @@ import Product from '../models/product.model'
 
 export interface ProductRepositoryInterface {
   all(): Promise<Product[]>;
-  get(id: number): Promise<Product | any>;
+  get(productId: string): Promise<Product | any>;
   create(data: Product): Promise<Product>;
-  update(id: number, data: Product): Promise<Product>;
-  delete(id: number): Promise<void>;
+  update(productId: string, data: Product): Promise<Product>;
+  delete(productId: string): Promise<void>;
 }

@@ -48,15 +48,15 @@ export enum Methodology {
  *        allOf:
  *          - type: object
  *            required:
- *              - id
+ *              - productId
  *            properties:
- *              id:
+ *              productId:
  *                type: integer
- *                example: 1
+ *                example: '716b3fb7-9b23-4e8c-a807-2ce46c7248ff'
  *          - $ref: '#/components/schemas/ProductInput'
  *    parameters:
  *      productId:
- *        name: id
+ *        name: productId
  *        in: path
  *        required: true
  *        description: ID of the product
@@ -115,8 +115,17 @@ export enum Methodology {
  *          format: date-time
  *          example: '2023-03-25T20:38:29.531Z'
  */
+
+export class ProductInput {
+  name: string;
+  owner: string;
+  scrumMaster: string;
+  developerNames: string[];
+  methodology: Methodology;
+  startDate: Date;
+}
 export default class Product {
-  id: number;
+  productId: string;
   name: string;
   owner: string;
   scrumMaster: string;

@@ -1,34 +1,26 @@
-import Product from "../models/product.model";
+import Product, { ProductInput } from "../models/product.model";
+import { createRandomProductArray } from "../config/seed";
 import { ProductRepositoryInterface } from "../common/types";
 import { Methodology } from "../models/product.model";
+import crypto from "crypto";
 
-// TODO: replace in-memory implementation with redis
-const _products: Array<Product> = [
-  {
-    id: 1,
-    name: "Product 1",
-    owner: "Owner 1",
-    scrumMaster: "Scrum Master 1",
-    developerNames: ["Developer 1", "Developer 2"],
-    methodology: Methodology.Agile,
-    startDate: new Date()
-  }
-]
+// initialize the array of products
+const _products: Array<Product> = createRandomProductArray();
 
 export default class ProductRepository implements ProductRepositoryInterface {
   async all(): Promise<Product[]> {
     return _products;
   }
 
-  async get(id: number): Promise<Product | any> {
-    const product = _products.find(x => x.id === id)
+  async get(productId: string): Promise<Product | any> {
+    const product = _products.find(x => x.productId === productId)
     if (product) return product
   }
   
-  async create(data: Product): Promise<Product> {
+  async create(data: ProductInput): Promise<Product> {
     const newProduct = new Product()
 
-    newProduct.id = Date.now()
+    newProduct.productId = crypto.randomUUID();
     newProduct.name = data.name
     newProduct.owner = data.owner
     newProduct.scrumMaster = data.scrumMaster
@@ -40,8 +32,8 @@ export default class ProductRepository implements ProductRepositoryInterface {
     return newProduct
   }
   
-  async update(id: number, data: Product): Promise<Product> {
-    const product = await this.get(id)
+  async update(productId: string, data: ProductInput): Promise<Product> {
+    const product = await this.get(productId)
     
     if (product) {
       product.name = data.name
@@ -58,8 +50,8 @@ export default class ProductRepository implements ProductRepositoryInterface {
     return product
   }
   
-  async delete(id: number): Promise<void> {
-    const product = await this.get(id)
+  async delete(productId: string): Promise<void> {
+    const product = await this.get(productId)
     if (product) {
       const idx = _products.indexOf(product)
       if (idx === -1) return

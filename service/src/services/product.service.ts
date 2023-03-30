@@ -1,26 +1,26 @@
 import ProductRepository  from "../repositories/product.repository"
-import Product  from "../models/product.model"
+import Product, { ProductInput }  from "../models/product.model"
 
 export function makeProductService (productRepository: ProductRepository) {
   return {
-    getProduct: async (id: number) => {
-      return await productRepository.get(id)
+    getProduct: async (productId: string): Promise<Product> => {
+      return await productRepository.get(productId)
     },
 
-    getProducts: async () => {
+    getProducts: async (): Promise<Array<Product>> => {
       return await productRepository.all()
     },
 
-    createProduct: async (data: Product) => {
+    createProduct: async (data: ProductInput): Promise<Product> => {
       return await productRepository.create(data)
     },
 
-    updateProduct: async (id: number, data: Product) => {
-      return await productRepository.update(id, data)
+    updateProduct: async (productId: string, data: ProductInput): Promise<Product> => {
+      return await productRepository.update(productId, data)
     },
 
-    deleteProduct: async (id: number) => {
-      await productRepository.delete(id)
+    deleteProduct: async (productId: string) => {
+      await productRepository.delete(productId)
     }
   }
 }

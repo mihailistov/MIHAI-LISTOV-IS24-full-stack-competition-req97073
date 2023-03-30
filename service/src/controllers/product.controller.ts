@@ -39,14 +39,14 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product/{id}:
+   * /api/product/{productId}:
    *  get:
    *    tags:
    *      - Product
    *    name: GET Product
-   *    summary: Returns product associated with id
+   *    summary: Returns product associated with productId
    *    parameters:
-   *      - name: id
+   *      - name: productId
    *        in: path
    *        required: true
    *        description: ID of the product
@@ -67,11 +67,11 @@ export class ProductController {
    *        description: Product not found
    */
 
-  @route('/:id')
+  @route('/:productId')
   @GET()
   async getProduct(req: Request, res: Response) {
-    const id: number = parseInt(req.params.id as string);
-    const product = await this.productService.getProduct(id)
+    const productId: string = req.params.productId;
+    const product = await this.productService.getProduct(productId)
     return res.json(product);
   }
 
@@ -123,7 +123,7 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product/{id}:
+   * /api/product/{productId}:
    *  patch:
    *    tags:
    *      - Product
@@ -156,23 +156,23 @@ export class ProductController {
    *      404:
    *        description: Product not found
    */
-  @route('/:id')
+  @route('/:productId')
   @PATCH()
   async updateProduct(req: Request, res: Response) {
-    const id: number = parseInt(req.params.id as string);
-    const product = await this.productService.updateProduct(id, req.body)
+    const productId: string = req.params.productId;
+    const product = await this.productService.updateProduct(productId, req.body)
     return res.json(product);
   }
 
   /**
    * @swagger
    *
-   * /api/product/{id}:
+   * /api/product/{productId}:
    *  delete:
    *    tags:
    *      - Product
    *    name: DELETE Product
-   *    summary: Deletes product with id
+   *    summary: Deletes product with productId
    *    parameters:
    *      - $ref: '#/components/parameters/productId'
    *    produces:
@@ -185,11 +185,11 @@ export class ProductController {
    *      404:
    *        description: Product not found
    */
-  @route('/:id')
+  @route('/:productId')
   @DELETE()
   async deleteProduct(req: Request, res: Response) {
-    const id: number = parseInt(req.params.id as string);
-    await this.productService.deleteProduct(id)
+    const productId: string = req.params.productId;
+    await this.productService.deleteProduct(productId)
     return res.sendStatus(200);
   }
 }
