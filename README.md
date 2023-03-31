@@ -65,6 +65,8 @@ What I would do next to build it out
 What I would do next
 1. Seperate out helper functions more, to clean it up a bit.
 2. More snackbar notifications on user actions such as saving/editing
+3. Use Typescript, just like the backend. More readable, useable, and secure.
+4. Implement a store, such as redux, if managing state across components is neccesary.
 
 ## Why are there no comments in the projects?
 I believe coding for readability, reuseability, and longevity is very important. In all of my developer experiences during my 6 years, in my experience, comments do no one good. Detailed documentation or cleaning up the code, and improving it's readability or breaking it up is the way to go. Comments often lead to more confusion.
