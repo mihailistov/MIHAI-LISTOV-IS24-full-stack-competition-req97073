@@ -2,6 +2,11 @@
 
 # IMB App
 
+## Demo:
+
+https://user-images.githubusercontent.com/7937856/229029391-1f5b9911-d3a9-4779-b716-a8d4f932f224.mov
+
+
 ## Getting started
 1. Start the backend service by running the following command:
 
