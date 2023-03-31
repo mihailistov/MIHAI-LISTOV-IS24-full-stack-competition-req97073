@@ -1,18 +1,18 @@
-import { GET, POST, PATCH, DELETE, route } from "awilix-express";
+import { GET, POST, PUT, DELETE, route } from "awilix-express";
 import { Request, Response } from "express";
 
-@route('/api/product')
+@route('/api/products')
 export class ProductController {
   constructor(private readonly productService: { [key: string]: Function }) { }
 
   /**
    * @swagger
    *
-   * /api/product:
+   * /api/products:
    *  get:
    *    tags:
    *      - Product
-   *    name: GET Product
+   *    name: GET Products
    *    summary: Returns all products
    *    produces:
    *      - application/json
@@ -39,7 +39,7 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product/{productId}:
+   * /api/products/{productId}:
    *  get:
    *    tags:
    *      - Product
@@ -78,7 +78,7 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product:
+   * /api/products:
    *  post:
    *    tags:
    *      - Product
@@ -123,11 +123,11 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product/{productId}:
-   *  patch:
+   * /api/products/{productId}:
+   *  put:
    *    tags:
    *      - Product
-   *    name: PATCH Product
+   *    name: PUT Product
    *    summary: Updates an existing product
    *    parameters:
    *      - $ref: '#/components/parameters/productId'
@@ -157,7 +157,7 @@ export class ProductController {
    *        description: Product not found
    */
   @route('/:productId')
-  @PATCH()
+  @PUT()
   async updateProduct(req: Request, res: Response) {
     const productId: string = req.params.productId;
     const product = await this.productService.updateProduct(productId, req.body)
@@ -167,7 +167,7 @@ export class ProductController {
   /**
    * @swagger
    *
-   * /api/product/{productId}:
+   * /api/products/{productId}:
    *  delete:
    *    tags:
    *      - Product

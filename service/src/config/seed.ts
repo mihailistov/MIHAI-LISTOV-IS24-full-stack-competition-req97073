@@ -11,9 +11,12 @@ export function createRandomProductArray(): Array<Product> {
     for (let j = 0; j < numOfDevs; j++) {
       developerNames.push(faker.name.fullName());
     }
+    let productName = faker.company.bsBuzz() + " " + faker.datatype.number({ min: 1, max: 1000 });
+    productName = productName.charAt(0).toUpperCase() + productName.slice(1);
+
     generatedProducts.push({
       productId: crypto.randomUUID(),
-      name: faker.name.fullName(),
+      name: productName,
       owner: faker.name.fullName(),
       scrumMaster: faker.name.fullName(),
       developerNames,

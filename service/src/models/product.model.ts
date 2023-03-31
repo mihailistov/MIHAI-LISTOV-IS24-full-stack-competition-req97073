@@ -34,9 +34,9 @@ export enum Methodology {
  *            example: 'Jane Doe'
  *          developerNames:
  *            type: array
+ *            example: ['John Doe', 'Jane Doe']
  *            items:
  *              type: string
- *              example: ['John Doe', 'Jane Doe']
  *          startDate:
  *            type: string
  *            format: date-time
@@ -51,7 +51,7 @@ export enum Methodology {
  *              - productId
  *            properties:
  *              productId:
- *                type: integer
+ *                type: string
  *                example: '716b3fb7-9b23-4e8c-a807-2ce46c7248ff'
  *          - $ref: '#/components/schemas/ProductInput'
  *    parameters:
@@ -61,7 +61,7 @@ export enum Methodology {
  *        required: true
  *        description: ID of the product
  *        schema:
- *          type: integer
+ *          type: string
  *          example: 1
  *      productName:
  *        name: name
